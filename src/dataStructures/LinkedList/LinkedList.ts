@@ -25,7 +25,6 @@ class LinkedList<T> {
     }
 
     public removeFirst() {
-        if (this.isEmpty()) return;
         if (this.head == null) return;
 
         this.head = this.head.next;
