@@ -168,6 +168,14 @@ class LinkedList<T> {
 
         return current;
     }
+
+    *[Symbol.iterator]() {
+        let current = this.head;
+        while (current) {
+            yield current.data;
+            current = current.next;
+        }
+    }
 }
 
 class Node<T> {
