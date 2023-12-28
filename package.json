@@ -1,5 +1,5 @@
 {
-  "name": "dsa",
+  "name": "data-structures-and-algorithms",
   "version": "1.0.0",
   "description": "Algoritmos e Estruturas de Dados",
   "main": "src/index.ts",
