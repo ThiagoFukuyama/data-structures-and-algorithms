@@ -83,6 +83,20 @@ class LinkedList<T> {
         this.length--;
     }
 
+    public search(cb: (value: T) => boolean): number {
+        if (this.head == null) return -1;
+
+        let current = this.head;
+        let index = 0;
+        while (current.next) {
+            if (cb(current.data)) return index;
+            current = current.next;
+            index++;
+        }
+
+        return -1;
+    }
+
     public contains(cb: (data: T) => boolean) {
         if (this.head == null) return false;
         let current = this.head;

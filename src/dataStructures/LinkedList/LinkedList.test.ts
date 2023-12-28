@@ -93,14 +93,28 @@ describe("LinkedList Class", () => {
         });
     });
 
+    describe("#search", () => {
+        it("Should return the index of the matching element", () => {
+            const linkedList = LinkedList.from(1, 2, 3);
+            const result = linkedList.search((data) => data % 2 === 0);
+            expect(result).toBe(1);
+        });
+
+        it("Should return -1 when none of the elements match the given condition", () => {
+            const linkedList = LinkedList.from(1, 2, 3);
+            const result = linkedList.search((data) => data === 5);
+            expect(result).toBe(-1);
+        });
+    });
+
     describe("#contains", () => {
-        it("Should return true when at least one of the nodes matches the given condition", () => {
+        it("Should return true when at least one of the elements matches the given condition", () => {
             const linkedList = LinkedList.from(1, 2, 3);
             const result = linkedList.contains((data) => data % 2 === 0);
             expect(result).toBe(true);
         });
 
-        it("Should return false when none of the nodes match the given condition", () => {
+        it("Should return false when none of the elements match the given condition", () => {
             const linkedList = LinkedList.from(1, 2, 3);
             const result = linkedList.contains((data) => data === 5);
             expect(result).toBe(false);
@@ -119,7 +133,7 @@ describe("LinkedList Class", () => {
     });
 
     describe("#isEmpty", () => {
-        it("Should return the empty status of the Queue", () => {
+        it("Should return the empty status of the LinkedList", () => {
             const linkedList = LinkedList.from(1, 2, 3);
             expect(linkedList.isEmpty()).toBe(false);
 
