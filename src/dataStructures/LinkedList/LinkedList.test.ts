@@ -133,6 +133,32 @@ describe("LinkedList Class", () => {
         });
     });
 
+    describe("#reverse", () => {
+        it("Should reverse the LinkedList in place", () => {
+            const linkedList = LinkedList.from(1, 2, 3);
+            linkedList.reverse();
+            expect(linkedList).toEqual(LinkedList.from(3, 2, 1));
+        });
+    });
+
+    describe("#toReversed", () => {
+        it("Should create a new reversed LinkedList", () => {
+            const linkedList = LinkedList.from(1, 2, 3);
+            const reversedLinkedList = linkedList.toReversed();
+
+            expect(reversedLinkedList).toEqual(LinkedList.from(3, 2, 1));
+            expect(reversedLinkedList).not.toBe(linkedList);
+        });
+
+        it("Should return an empty LinkedList when the original one is empty", () => {
+            const linkedList = new LinkedList<number>();
+            const reversedLinkedList = linkedList.toReversed();
+
+            expect(reversedLinkedList).toEqual(new LinkedList<number>());
+            expect(reversedLinkedList).not.toBe(linkedList);
+        });
+    });
+
     describe("#size", () => {
         it("Should return the size of the LinkedList", () => {
             const linkedList = new LinkedList<number>();

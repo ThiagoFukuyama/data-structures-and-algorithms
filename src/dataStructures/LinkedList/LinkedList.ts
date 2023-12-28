@@ -109,6 +109,29 @@ class LinkedList<T> {
         return false;
     }
 
+    public reverse(): LinkedList<T> {
+        if (this.head == null) return this;
+
+        let current: Node<T> | null = this.head;
+        let prev: Node<T> | null = null;
+        let next: Node<T> | null = null;
+
+        while (current) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        this.head = prev;
+
+        return this;
+    }
+
+    public toReversed(): LinkedList<T> {
+        return LinkedList.from(...this).reverse();
+    }
+
     public size() {
         return this.length;
     }
