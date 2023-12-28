@@ -1,29 +1,33 @@
 import { deepCopy } from "./deepCopy";
 
 describe("deepCopy", () => {
-    it("Should create a copy of the original object", () => {
-        const object = { id: 500, name: "John Doe", isAdmin: false };
-        const objectCopy = deepCopy(object);
-
-        expect(objectCopy).toEqual({
+    it("Should create a recursive copy of the original object", () => {
+        const object = {
             id: 500,
             name: "John Doe",
-            isAdmin: false,
-        });
+            grades: { "1st": 9.0, "2nd": 9.5 },
+        };
+        const objectCopy = deepCopy(object);
+
+        expect(objectCopy).toEqual(object);
+        expect(objectCopy).not.toBe(object);
+
+        expect(objectCopy.grades).toEqual(object.grades);
+        expect(objectCopy.grades).not.toBe(object.grades);
     });
 
-    it("Should create a copy of the original array", () => {
-        const array = [1, 2, 3, 4, 5];
+    it("Should create a recursive copy of the original array", () => {
+        const array = [
+            [1, 2, 3],
+            [4, 5, 6],
+        ];
         const arrayCopy = deepCopy(array);
 
-        expect(arrayCopy).toEqual([1, 2, 3, 4, 5]);
-    });
+        expect(arrayCopy).toEqual(array);
+        expect(arrayCopy).not.toBe(array);
 
-    it("Should create a copy of the original Set", () => {
-        const set = new Set<number>([1, 2, 3]);
-        const setCopy = new Set(deepCopy([...set]));
-
-        expect(setCopy).toEqual(set);
+        expect(arrayCopy[0]).toEqual(array[0]);
+        expect(arrayCopy[0]).not.toBe(array[0]);
     });
 
     it("Should return null when passed null", () => {
@@ -37,6 +41,6 @@ describe("deepCopy", () => {
         const value = 255;
         const valueCopy = deepCopy(value);
 
-        expect(valueCopy).toBe(255);
+        expect(valueCopy).toBe(value);
     });
 });
