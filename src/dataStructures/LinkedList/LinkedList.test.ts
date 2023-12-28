@@ -105,6 +105,12 @@ describe("LinkedList Class", () => {
             const result = linkedList.search((data) => data === 5);
             expect(result).toBe(-1);
         });
+
+        it("Should return -1 when the LinkedList is empty", () => {
+            const linkedList = new LinkedList<number>();
+            const result = linkedList.search((data) => data === 5);
+            expect(result).toBe(-1);
+        });
     });
 
     describe("#contains", () => {
@@ -116,6 +122,12 @@ describe("LinkedList Class", () => {
 
         it("Should return false when none of the elements match the given condition", () => {
             const linkedList = LinkedList.from(1, 2, 3);
+            const result = linkedList.contains((data) => data === 5);
+            expect(result).toBe(false);
+        });
+
+        it("Should return false when the LinkedList is empty", () => {
+            const linkedList = new LinkedList<number>();
             const result = linkedList.contains((data) => data === 5);
             expect(result).toBe(false);
         });
