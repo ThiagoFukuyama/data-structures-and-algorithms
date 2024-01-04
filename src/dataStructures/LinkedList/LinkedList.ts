@@ -157,7 +157,10 @@ class LinkedList<T> {
 
     public static from<T>(...data: T[]) {
         const linkedList = new LinkedList<T>();
-        data.forEach((element) => linkedList.append(element));
+
+        for (let i = data.length - 1; i >= 0; i--) {
+            linkedList.preppend(data[i]);
+        }
 
         return linkedList;
     }

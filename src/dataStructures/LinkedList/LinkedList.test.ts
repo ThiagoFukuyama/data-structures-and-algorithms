@@ -4,7 +4,13 @@ describe("LinkedList Class", () => {
     describe("#from", () => {
         it("Should create a LinkedList based on the given data", () => {
             const linkedList = LinkedList.from(1, 2, 3);
+            const expectedList = new LinkedList<number>();
+            expectedList.preppend(3);
+            expectedList.preppend(2);
+            expectedList.preppend(1);
+
             expect(linkedList).toBeInstanceOf(LinkedList);
+            expect(linkedList).toEqual(expectedList);
         });
     });
 
