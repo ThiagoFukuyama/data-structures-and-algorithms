@@ -86,9 +86,9 @@ class LinkedList<T> {
     public search(cb: (value: T) => boolean): number {
         if (this.head == null) return -1;
 
-        let current = this.head;
+        let current: Node<T> | null = this.head;
         let index = 0;
-        while (current.next) {
+        while (current) {
             if (cb(current.data)) return index;
             current = current.next;
             index++;
@@ -99,9 +99,9 @@ class LinkedList<T> {
 
     public contains(cb: (data: T) => boolean) {
         if (this.head == null) return false;
-        let current = this.head;
+        let current: Node<T> | null = this.head;
 
-        while (current.next) {
+        while (current) {
             if (cb(current.data)) return true;
             current = current.next;
         }
