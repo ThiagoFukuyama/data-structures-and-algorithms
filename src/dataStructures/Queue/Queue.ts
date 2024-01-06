@@ -1,41 +1,61 @@
 class Queue<T> {
-    private items: T[];
+    private items: Record<number, T>;
+    private head: number = 0;
+    private tail: number = 0;
 
     constructor() {
-        this.items = [];
+        this.items = {};
     }
 
     enqueue(item: T): void {
-        this.items.push(item);
+        this.items[this.tail] = item;
+        this.tail++;
     }
 
-    dequeue(): T | undefined {
-        return this.items.shift();
+    dequeue(): T {
+        if (this.isEmpty()) {
+            throw new Error(
+                "Queue Empty: Unable to dequeue from an empty queue"
+            );
+        }
+
+        const itemToDequeue = this.items[this.head];
+        delete this.items[this.head];
+        this.head++;
+
+        return itemToDequeue;
     }
 
-    peek(): T {
-        return this.items[0];
+    peek(): T | undefined {
+        return this.items[this.head];
     }
 
     contains(cb: (item: T) => boolean): boolean {
-        return this.items.some(cb);
+        let result = false;
+
+        Object.values(this.items).forEach((value) => {
+            if (cb(value)) result = true;
+        });
+
+        return result;
     }
 
     isEmpty(): boolean {
-        return this.items.length === 0;
+        return this.size() === 0;
     }
 
     size(): number {
-        return this.items.length;
+        return this.tail - this.head;
     }
 
     toString(): string {
-        let string = "";
-        this.items.forEach((item, i) => {
-            string += i !== this.items.length - 1 ? `${item}, ` : item;
-        });
+        if (this.isEmpty()) return "[]";
 
-        return "[" + string + "]";
+        const string = Object.values(this.items).reduce((acc, curr) => {
+            return acc + `${curr}, `;
+        }, "");
+
+        return "[" + string.slice(0, string.length - 2) + "]";
     }
 }
 
