@@ -1,12 +1,14 @@
 class Stack<T> {
     private items: T[];
+    private top: number = 0;
 
     constructor() {
         this.items = [];
     }
 
     push(item: T): void {
-        this.items.push(item);
+        this.items[this.top] = item;
+        this.top++;
     }
 
     pop(): T | undefined {
@@ -14,29 +16,38 @@ class Stack<T> {
             throw new Error("Stack Underflow Error");
         }
 
-        return this.items.pop();
+        const itemToRemove = this.items[this.top - 1];
+        this.items.length--;
+        this.top--;
+
+        return itemToRemove;
     }
 
     peek(): T {
-        return this.items[this.items.length - 1];
+        return this.items[this.top - 1];
     }
 
     search(cb: (item: T) => boolean): number {
-        const index = this.items.findIndex(cb);
-        return index >= 0 ? index + 1 : index;
+        for (let i = 0; i < this.items.length; i++) {
+            if (cb(this.items[i])) return i + 1;
+        }
+
+        return -1;
     }
 
     isEmpty(): boolean {
-        return this.items.length === 0;
+        return this.top === 0;
     }
 
     toString(): string {
-        let string = "";
-        this.items.forEach((item, i) => {
-            string += i !== this.items.length - 1 ? `${item}, ` : item;
-        });
+        if (this.isEmpty()) return "[]";
 
-        return "[" + string + "]";
+        let string = "";
+        for (let i = 0; i < this.items.length; i++) {
+            string += `${this.items[i]}, `;
+        }
+
+        return "[" + string.slice(0, string.length - 2) + "]";
     }
 }
 
