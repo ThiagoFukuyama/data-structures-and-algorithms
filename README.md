@@ -15,7 +15,7 @@ cd data-structures-and-algorithms
 
 -   Instale as dependências com [npm](https://nodejs.org/en): `npm install`
 
--   Este projeto utiliza do pacote [tsx](https://github.com/privatenumber/tsx) para facilitar a execução de TypeScript no ambiente [NodeJS](<(https://nodejs.org/en)>). Para rodar o projeto, execute o comando `npm start`
+-   Este projeto utiliza do pacote [tsx](https://github.com/privatenumber/tsx) para facilitar o desenvolvimento com TypeScript no ambiente [NodeJS](<(https://nodejs.org/en)>). Para rodar o projeto, execute o comando `npm start`
 
 -   [Jest](https://jestjs.io/pt-BR/) e [ts-jest](https://kulshekhar.github.io/ts-jest/) são utilizados para executar testes unitários em TypeScript. Rode os testes com o comando `npm test`
 
