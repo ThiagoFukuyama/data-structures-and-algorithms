@@ -21,6 +21,23 @@ describe("reverseArray", () => {
 
         expect(tuple).toEqual([{ id: 200 }, true, "Dois", 1]);
     });
+
+    it("Should reverse the selected area of the array based on the given indexes", () => {
+        const array = [1, 2, 3, 4, 5];
+        reverseArray(array, 1, 3);
+
+        expect(array).toEqual([1, 4, 3, 2, 5]);
+    });
+
+    it("Should throw an error when give indices are out of bounds", () => {
+        const array = [1, 2, 3, 4, 5];
+        expect(() => reverseArray(array, -1, 500)).toThrow();
+    });
+
+    it("Should throw an error when start is bigger than end", () => {
+        const array = [1, 2, 3, 4, 5];
+        expect(() => reverseArray(array, 3, 1)).toThrow();
+    });
 });
 
 describe("toReversedArray", () => {
@@ -28,8 +45,9 @@ describe("toReversedArray", () => {
         const array = [1, 2, 3, 4, 5];
         const reversedArray = toReversedArray(array);
 
-        expect(array).toEqual([1, 2, 3, 4, 5]);
         expect(reversedArray).toEqual([5, 4, 3, 2, 1]);
+        expect(array).toEqual([1, 2, 3, 4, 5]);
+        expect(reversedArray).not.toBe(array);
     });
 
     it("Should return a new empty array", () => {
@@ -44,5 +62,22 @@ describe("toReversedArray", () => {
         const reversedTuple = toReversedArray(tuple);
 
         expect(reversedTuple).toEqual([{ id: 200 }, true, "Dois", 1]);
+    });
+
+    it("Should create a new array with the selected area reversed", () => {
+        const array = [1, 2, 3, 4, 5];
+        const reversedArray = toReversedArray(array, 1, 3);
+
+        expect(reversedArray).toEqual([1, 4, 3, 2, 5]);
+    });
+
+    it("Should throw an error when give indices are out of bounds", () => {
+        const array = [1, 2, 3, 4, 5];
+        expect(() => toReversedArray(array, 1, 50)).toThrow();
+    });
+
+    it("Should throw an error when start is bigger than end", () => {
+        const array = [1, 2, 3, 4, 5];
+        expect(() => toReversedArray(array, 4, 2)).toThrow();
     });
 });
