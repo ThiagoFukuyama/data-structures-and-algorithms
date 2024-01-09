@@ -1,5 +1,5 @@
 export function deleteFromArray<T>(array: T[], index: number): T[] {
-    if (array.length === 0 || index > array.length - 1 || index < 0) {
+    if (array.length === 0 || index >= array.length || index < 0) {
         return array;
     }
 
