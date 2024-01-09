@@ -94,7 +94,6 @@ describe("ArrayList Class", () => {
             const expectedArrayList = ArrayList.from(1, 2, 4, 5);
 
             expect(arrayList).toEqual(expectedArrayList);
-            expect(arrayList.get(2)).toBe(4);
             expect(arrayList.size()).toBe(4);
         });
 

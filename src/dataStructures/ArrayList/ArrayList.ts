@@ -42,20 +42,14 @@ class ArrayList<T> {
         if (index < 0 || index >= this.arraySize)
             throw new Error("Index Out of Bounds Error");
 
-        for (let i = 0; i < this.arraySize; i++) {
-            if (i === index) {
-                for (let j = 0; j < this.arraySize - i - 1; j++) {
-                    this.array[i + j] = this.array[i + j + 1];
-                }
+        for (let i = index; i < this.arraySize; i++) {
+            this.array[i] = this.array[i + 1];
+        }
 
-                delete this.array[this.arraySize - 1];
-                this.arraySize--;
+        this.arraySize--;
 
-                if (this.arraySize <= Math.floor(this.capacity / 3)) {
-                    this.shrink();
-                }
-                break;
-            }
+        if (this.arraySize <= Math.floor(this.capacity / 3)) {
+            this.shrink();
         }
     }
 
