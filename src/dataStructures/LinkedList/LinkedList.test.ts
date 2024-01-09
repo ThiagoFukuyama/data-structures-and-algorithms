@@ -78,11 +78,6 @@ describe("LinkedList Class", () => {
             linkedList.removeFirst();
             expect(linkedList.getFirst()).toBe(2);
         });
-
-        it("Should not remove anything the head element", () => {
-            linkedList.removeFirst();
-            expect(linkedList.getFirst()).toBe(2);
-        });
     });
 
     describe("#removeLast", () => {
