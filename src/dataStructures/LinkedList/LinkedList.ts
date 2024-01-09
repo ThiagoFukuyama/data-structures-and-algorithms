@@ -32,17 +32,22 @@ class LinkedList<T> {
     }
 
     public removeLast() {
-        if (this.isEmpty()) return;
+        if (this.head == null) return;
 
-        const penultimeNode = this.getNode(this.length - 2);
+        let prev: Node<T> | null = null;
+        let current = this.head;
 
-        if (penultimeNode == null) {
-            this.head = null;
-            this.length--;
-            return;
+        while (current.next) {
+            prev = current;
+            current = current.next;
         }
 
-        penultimeNode.next = null;
+        if (prev == null) {
+            this.head = null;
+        } else {
+            prev.next = null;
+        }
+
         this.length--;
     }
 

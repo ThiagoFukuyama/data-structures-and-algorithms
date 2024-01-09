@@ -68,13 +68,18 @@ describe("LinkedList Class", () => {
     describe("#insertAt", () => {
         it("Should insert the given element at the specified index", () => {
             linkedList.insertAt(1, 500);
-            expect(linkedList.get(1)).toBe(500);
-            expect(linkedList.get(2)).toBe(2);
+            const expectedList = LinkedList.from(1, 500, 2, 3);
+            expect(linkedList).toEqual(expectedList);
         });
     });
 
     describe("#removeFirst", () => {
         it("Should remove the head element", () => {
+            linkedList.removeFirst();
+            expect(linkedList.getFirst()).toBe(2);
+        });
+
+        it("Should not remove anything the head element", () => {
             linkedList.removeFirst();
             expect(linkedList.getFirst()).toBe(2);
         });
@@ -84,6 +89,12 @@ describe("LinkedList Class", () => {
         it("Should remove the last element", () => {
             linkedList.removeLast();
             expect(linkedList.getLast()).toBe(2);
+        });
+
+        it("Should remove the head element if it's the only one", () => {
+            const onlyOne = LinkedList.from(1);
+            onlyOne.removeLast();
+            expect(onlyOne.isEmpty()).toBe(true);
         });
     });
 
