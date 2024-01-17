@@ -4,3 +4,4 @@ export { rotateArray } from "./rotateArray/rotateArray";
 export { insertIntoArray } from "./insertIntoArray/insertIntoArray";
 export { deleteFromArray } from "./deleteFromArray/deleteFromArray";
 export { linearSearch } from "./linearSearch/linearSearch";
+export { binarySearch } from "./binarySearch/binarySearch";
