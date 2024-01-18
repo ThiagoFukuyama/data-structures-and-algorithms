@@ -5,3 +5,4 @@ export { insertIntoArray } from "./insertIntoArray/insertIntoArray";
 export { deleteFromArray } from "./deleteFromArray/deleteFromArray";
 export { linearSearch } from "./linearSearch/linearSearch";
 export { binarySearch } from "./binarySearch/binarySearch";
+export { interpolationSearch } from "./interpolationSearch/interpolationSearch";
