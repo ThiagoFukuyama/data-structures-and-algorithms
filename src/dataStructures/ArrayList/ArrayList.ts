@@ -3,7 +3,7 @@
  **  Implementação com fins de aprendizagem.
  */
 
-class ArrayList<T> {
+export class ArrayList<T> {
     private readonly DEFAULT_CAPACITY = 10;
     private capacity: number;
     private arraySize: number = 0;
@@ -121,5 +121,3 @@ class ArrayList<T> {
         this.array = newArray;
     }
 }
-
-export default ArrayList;
