@@ -37,7 +37,7 @@ async function main() {
     });
 
     if (isCancel(selectedType)) {
-        cancel("Operation cancelled");
+        cancel("Operation cancelled.");
         process.exit(0);
     }
 
@@ -48,7 +48,7 @@ async function main() {
     });
 
     if (isCancel(name)) {
-        cancel("Operation cancelled");
+        cancel("Operation cancelled.");
         process.exit(0);
     }
 
@@ -57,7 +57,7 @@ async function main() {
     });
 
     if (!shouldContinue || isCancel(shouldContinue)) {
-        cancel("Operation cancelled");
+        cancel("Operation cancelled.");
         process.exit(0);
     }
 
@@ -75,11 +75,7 @@ async function main() {
         await fs.writeFile(testFilePath, boilerplate.getTest());
         await fs.appendFile(indexPath, boilerplate.getExport());
     } catch (e) {
-        const message =
-            e instanceof Error
-                ? e.message
-                : "Sorry, an unexpected error occured";
-        cancel(message);
+        cancel(`Sorry! It looks like ${fileName} already exists.`);
         process.exit(1);
     }
 
