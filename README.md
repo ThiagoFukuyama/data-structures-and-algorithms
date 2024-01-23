@@ -19,8 +19,6 @@ cd data-structures-and-algorithms
 
 -   [Jest](https://jestjs.io/pt-BR/) e [ts-jest](https://kulshekhar.github.io/ts-jest/) são utilizados para executar testes unitários em TypeScript. Rode os testes com o comando `npm test`
 
--   Se desejar, é possível transpilar o projeto executando o comando `npm run build`
-
 # Boilerplate Generator CLI
 
 -   O projeto conta com uma simples e experimental interface de linha de comando para geração rápida de novos módulos. Para utilizá-la, execute o comando `npm run generate` e siga as instruções.
