@@ -1,4 +1,4 @@
-class LinkedList<T> {
+export class LinkedList<T> {
     private head: Node<T> | null = null;
     private length: number = 0;
 
@@ -217,5 +217,3 @@ class Node<T> {
         this.data = data;
     }
 }
-
-export default LinkedList;

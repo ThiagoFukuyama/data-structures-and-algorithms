@@ -1,4 +1,4 @@
-class Queue<T> {
+export class Queue<T> {
     private items: Record<number, T>;
     private head: number = 0;
     private tail: number = 0;
@@ -58,5 +58,3 @@ class Queue<T> {
         return "[" + string.slice(0, string.length - 2) + "]";
     }
 }
-
-export default Queue;

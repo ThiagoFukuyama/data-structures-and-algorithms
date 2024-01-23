@@ -1,4 +1,4 @@
-import ArrayList from "./ArrayList";
+import { ArrayList } from "./ArrayList";
 
 describe("ArrayList Class", () => {
     describe("#constructor", () => {

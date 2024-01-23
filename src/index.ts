@@ -1,4 +1,4 @@
-console.log("Algoritmos e Estruturas de Dados (TypeScript)");
+console.log("Data Structures and Algorithms (TypeScript)");
 console.log(
-    'Os módulos podem ser importados de "./dataStructures/index" e "./algorithms/index"'
+    'The modules can be imported from "./dataStructures" and "./algorithms"'
 );

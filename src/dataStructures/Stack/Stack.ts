@@ -1,4 +1,4 @@
-class Stack<T> {
+export class Stack<T> {
     private items: T[];
     private top: number = 0;
 
@@ -50,5 +50,3 @@ class Stack<T> {
         return "[" + string.slice(0, string.length - 2) + "]";
     }
 }
-
-export default Stack;
