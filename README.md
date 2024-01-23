@@ -21,6 +21,6 @@ cd data-structures-and-algorithms
 
 # Boilerplate Generator CLI
 
--   O projeto conta com uma simples e experimental interface de linha de comando para geração rápida de novos módulos. Para utilizá-la, execute o comando `npm run generate` e siga as instruções.
+-   O projeto conta com uma simples e experimental interface de linha de comando para geração rápida de novos módulos. Para utilizá-la, execute o comando `npm run generate` e siga as instruções
 
 _Sempre aprendendo =)_
