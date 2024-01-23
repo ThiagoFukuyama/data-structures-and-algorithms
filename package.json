@@ -7,8 +7,7 @@
   "scripts": {
     "test": "jest",
     "start": "tsx watch ./src/index.ts",
-    "generate": "tsx ./src/generateBoilerplateCli/index.ts",
-    "build": "tsc"
+    "generate": "tsx ./src/generateBoilerplateCli/index.ts"
   },
   "author": "Thiago Fukuyama Marcilli",
   "license": "MIT",
