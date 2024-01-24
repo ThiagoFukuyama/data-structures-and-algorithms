@@ -15,4 +15,14 @@ describe("validateFileName", () => {
         const isValid = validateFileName("");
         expect(isValid).toBe(false);
     });
+
+    it("Should return false if it starts with a number", () => {
+        const isValid = validateFileName("8reverseList");
+        expect(isValid).toBe(false);
+    });
+
+    it("Should return false if it starts with a dash", () => {
+        const isValid = validateFileName("-reverseList");
+        expect(isValid).toBe(false);
+    });
 });
