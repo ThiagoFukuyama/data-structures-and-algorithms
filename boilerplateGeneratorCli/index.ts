@@ -18,7 +18,11 @@ import {
     DataStructureBoilerplate,
 } from "./Boilerplate";
 
-const srcDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const srcDir = path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "..",
+    "src"
+);
 
 const boilerplateOptions: Boilerplate[] = [
     new AlgorithmBoilerplate("Algorithm", "algorithms"),
