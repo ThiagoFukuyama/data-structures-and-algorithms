@@ -18,6 +18,8 @@ import {
     DataStructureBoilerplate,
 } from "./Boilerplate";
 
+import { validateFileName } from "./validateFileName";
+
 const srcDir = path.resolve(
     path.dirname(fileURLToPath(import.meta.url)),
     "..",
@@ -49,6 +51,10 @@ async function main() {
 
     const name = await text({
         message: `What's the file name of the new ${boilerplate.label}?`,
+        validate: (value) => {
+            if (!validateFileName(value))
+                return "Please, insert a valid module name.";
+        },
     });
 
     if (isCancel(name)) {
@@ -68,8 +74,9 @@ async function main() {
     boilerplate.fileName = name.trim().replace(/\s/g, "");
     const { fileName, parentFolderName, label } = boilerplate;
 
-    const indexPath = path.resolve(srcDir, parentFolderName, "index.ts");
+    const parentIndexPath = path.resolve(srcDir, parentFolderName, "index.ts");
     const folder = path.resolve(srcDir, parentFolderName, fileName);
+
     const filePath = path.resolve(folder, `${fileName}.ts`);
     const testFilePath = path.resolve(folder, `${fileName}.test.ts`);
 
@@ -77,7 +84,7 @@ async function main() {
         await fs.mkdir(folder);
         await fs.writeFile(filePath, boilerplate.getCode());
         await fs.writeFile(testFilePath, boilerplate.getTest());
-        await fs.appendFile(indexPath, boilerplate.getExport());
+        await fs.appendFile(parentIndexPath, boilerplate.getExport());
     } catch (e) {
         cancel(`Sorry! It looks like ${fileName} already exists.`);
         process.exit(1);
