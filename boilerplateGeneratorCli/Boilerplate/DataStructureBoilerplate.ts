@@ -6,7 +6,7 @@ export class DataStructureBoilerplate extends Boilerplate {
     }
 
     public getCode(): string {
-        return `export class ${this.fileName} {
+        return `export class ${this.fileName}<T> {
     constructor() {
         
     }

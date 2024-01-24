@@ -6,7 +6,7 @@ export class AlgorithmBoilerplate extends Boilerplate {
     }
 
     public getCode() {
-        return `export function ${this.fileName}() {
+        return `export function ${this.fileName}<T>() {
     
 }
         `;
