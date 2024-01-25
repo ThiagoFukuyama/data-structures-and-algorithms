@@ -4,8 +4,12 @@ export function deepCopy<T>(value: T): T {
     const newObject = (Array.isArray(value) ? [] : {}) as T;
 
     for (const key in value) {
-        newObject[key] =
-            typeof value[key] === "object" ? deepCopy(value[key]) : value[key];
+        if (value.hasOwnProperty(key)) {
+            newObject[key] =
+                typeof value[key] === "object"
+                    ? deepCopy(value[key])
+                    : value[key];
+        }
     }
 
     return newObject;
