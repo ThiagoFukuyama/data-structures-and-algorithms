@@ -12,6 +12,6 @@ export abstract class Boilerplate {
     public abstract getTest(): string;
 
     public getExport(): string {
-        return `export { ${this.fileName} } from "./${this.fileName}/${this.fileName}"`;
+        return `export { ${this.fileName} } from "./${this.fileName}/${this.fileName}";\n`;
     }
 }

@@ -6,4 +6,4 @@ export { deleteFromArray } from "./deleteFromArray/deleteFromArray";
 export { linearSearch } from "./linearSearch/linearSearch";
 export { binarySearch } from "./binarySearch/binarySearch";
 export { interpolationSearch } from "./interpolationSearch/interpolationSearch";
-export { bubbleSort } from "./bubbleSort/bubbleSort"
+export { bubbleSort } from "./bubbleSort/bubbleSort";
