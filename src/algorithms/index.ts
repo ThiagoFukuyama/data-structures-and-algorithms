@@ -8,3 +8,4 @@ export { binarySearch } from "./binarySearch/binarySearch";
 export { interpolationSearch } from "./interpolationSearch/interpolationSearch";
 export { bubbleSort } from "./bubbleSort/bubbleSort";
 export { selectionSort } from "./selectionSort/selectionSort";
+export { insertionSort } from "./insertionSort/insertionSort";
