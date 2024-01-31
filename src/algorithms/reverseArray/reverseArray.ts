@@ -37,7 +37,7 @@ export function toReversedArray<T>(
     return reverseArray([...array], start, end);
 }
 
-export function indicesAreOutOfBounds<T>(
+function indicesAreOutOfBounds<T>(
     array: T[],
     start: number,
     end: number
