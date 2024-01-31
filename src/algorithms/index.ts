@@ -11,3 +11,4 @@ export { selectionSort } from "./selectionSort/selectionSort";
 export { insertionSort } from "./insertionSort/insertionSort";
 export { fibonacci } from "./fibonacci/fibonacci";
 export { mergeSort } from "./mergeSort/mergeSort";
+export { quickSort } from "./quickSort/quickSort";
