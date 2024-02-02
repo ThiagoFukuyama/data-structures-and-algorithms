@@ -1,5 +1,5 @@
 export class Hashtable<K extends EntryKey, V> {
-    table: Entry<K, V>[][];
+    private table: Entry<K, V>[][];
     private length: number = 0;
 
     constructor(capacity: number = 10) {
