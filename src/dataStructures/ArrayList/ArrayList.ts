@@ -120,4 +120,10 @@ export class ArrayList<T> {
         this.capacity = newCapacity;
         this.array = newArray;
     }
+
+    *[Symbol.iterator]() {
+        for (let i = 0; i < this.arraySize; i++) {
+            yield this.array[i];
+        }
+    }
 }
