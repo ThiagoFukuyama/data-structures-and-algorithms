@@ -1,9 +1,11 @@
 import { Hashtable } from "./Hashtable";
 
 let hashtable: Hashtable<string, number>;
+let emptyHashtable: Hashtable<string, number>;
 
 beforeEach(() => {
     hashtable = Hashtable.from(["John", 1500], ["Glenn", 2700], ["Jane", 1950]);
+    emptyHashtable = new Hashtable();
 });
 
 describe("Hashtable", () => {
@@ -48,8 +50,8 @@ describe("Hashtable", () => {
         });
 
         it("Should create an empty Hashtable", () => {
-            const emptyHashtable = Hashtable.from();
-            expect(emptyHashtable.isEmpty()).toBe(true);
+            const emptyFromHashtable = Hashtable.from();
+            expect(emptyFromHashtable.isEmpty()).toBe(true);
         });
     });
 
@@ -67,6 +69,18 @@ describe("Hashtable", () => {
         });
     });
 
+    describe("#clear", () => {
+        it("Should clear all the entries from the Hashtable", () => {
+            hashtable.clear();
+            expect(hashtable).toEqual(emptyHashtable);
+        });
+
+        it("Should maintain the Hashtable empty", () => {
+            emptyHashtable.clear();
+            expect(emptyHashtable.isEmpty()).toBe(true);
+        });
+    });
+
     describe("#get size", () => {
         it("Should return the current size of the Hashtable", () => {
             expect(hashtable.size).toBe(3);
@@ -79,7 +93,6 @@ describe("Hashtable", () => {
         });
 
         it("Should return true when the Hashtable has no elements", () => {
-            const emptyHashtable = new Hashtable<string, number>();
             expect(emptyHashtable.isEmpty()).toBe(true);
         });
     });

@@ -54,6 +54,11 @@ export class Hashtable<K extends EntryKey, V> {
         }
     }
 
+    public clear() {
+        this.table = new Array(this.table.length);
+        this.length = 0;
+    }
+
     public get size() {
         return this.length;
     }
