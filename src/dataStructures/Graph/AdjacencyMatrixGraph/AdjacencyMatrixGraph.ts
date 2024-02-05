@@ -1,7 +1,9 @@
+import { Graph, GraphNode } from "../Graph";
+
 /**
  * Unweight and directed Graph
  */
-export class AdjacencyMatrixGraph<T> {
+export class AdjacencyMatrixGraph<T> implements Graph<T> {
     private readonly DEFAULT_SIZE: number = 5;
     private nodes: Node<T>[];
     private matrix: (0 | 1)[][];
@@ -81,7 +83,7 @@ export class AdjacencyMatrixGraph<T> {
     }
 }
 
-export class Node<T> {
+export class Node<T> implements GraphNode<T> {
     data: T;
 
     constructor(data: T) {

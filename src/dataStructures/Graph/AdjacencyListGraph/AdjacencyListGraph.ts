@@ -1,6 +1,7 @@
-import { ArrayList, LinkedList } from "..";
+import { ArrayList, LinkedList } from "../..";
+import { Graph, GraphNode } from "../Graph";
 
-export class AdjacencyListGraph<T> {
+export class AdjacencyListGraph<T> implements Graph<T> {
     adjacentList: ArrayList<LinkedList<Node<T>>>;
 
     constructor() {
@@ -12,6 +13,14 @@ export class AdjacencyListGraph<T> {
         newNodeList.append(new Node(data));
 
         this.adjacentList.add(newNodeList);
+    }
+
+    public getNodes() {
+        if (this.adjacentList.isEmpty()) return [];
+
+        return [...this.adjacentList].map(
+            (nodeList) => nodeList.getFirst() as Node<T>
+        );
     }
 
     public addEdge(src: number, dest: number) {
@@ -75,7 +84,7 @@ export class AdjacencyListGraph<T> {
     }
 }
 
-export class Node<T> {
+export class Node<T> implements GraphNode<T> {
     data: T;
 
     constructor(data: T) {
