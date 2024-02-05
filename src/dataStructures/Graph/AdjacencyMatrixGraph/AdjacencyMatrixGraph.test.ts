@@ -30,7 +30,7 @@ describe("AdjacencyMatrixGraph", () => {
         });
     });
 
-    describe("#getNode", () => {
+    describe("#getNodes", () => {
         it("Should return all the set nodes ", () => {
             const nodeNames = ["A", "B", "C"];
 
