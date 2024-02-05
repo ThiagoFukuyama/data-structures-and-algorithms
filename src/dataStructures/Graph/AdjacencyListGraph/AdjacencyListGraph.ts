@@ -70,6 +70,8 @@ export class AdjacencyListGraph<T> implements Graph<T> {
     }
 
     public toString(): string {
+        if (this.isEmpty()) return "( )";
+
         let stringifiedGraph = "";
 
         for (const nodeList of this.adjacentList) {
