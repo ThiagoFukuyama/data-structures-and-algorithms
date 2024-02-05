@@ -1,16 +1,28 @@
 /**
  * Unweight and directed Graph
  */
-export class AdjacencyMatrixGraph {
+export class AdjacencyMatrixGraph<T> {
     private readonly DEFAULT_SIZE: number = 5;
+    private nodes: Node<T>[];
     private matrix: (0 | 1)[][];
     private numNodes: number;
 
     constructor(size: number) {
         this.numNodes = size > 0 ? size : this.DEFAULT_SIZE;
+        this.nodes = [];
         this.matrix = Array.from({ length: this.numNodes }, () =>
             Array(this.numNodes).fill(0)
         );
+    }
+
+    public addNode(data: T) {
+        if (this.nodes.length >= this.numNodes) return;
+
+        this.nodes[this.nodes.length] = new Node(data);
+    }
+
+    public getNodes(): Node<T>[] {
+        return this.nodes;
     }
 
     public addEdge(src: number, dest: number) {
@@ -36,9 +48,21 @@ export class AdjacencyMatrixGraph {
     }
 
     public toString(): string {
-        const stringifiedGraph = this.matrix
-            .map((row) => row.map((col) => col).join(" "))
-            .join("\n");
+        if (this.nodes.length <= 0) return "( )";
+
+        let stringifiedGraph = "  ";
+
+        for (const node of this.nodes) {
+            stringifiedGraph += `${node.data} `;
+        }
+
+        for (let i = 0; i < this.matrix.length; i++) {
+            stringifiedGraph += `\n${this.nodes[i].data} `;
+
+            for (let j = 0; j < this.matrix[i].length; j++) {
+                stringifiedGraph += `${this.matrix[i][j]} `;
+            }
+        }
 
         return stringifiedGraph;
     }
@@ -54,5 +78,13 @@ export class AdjacencyMatrixGraph {
             dest >= 0 &&
             dest <= this.numNodes
         );
+    }
+}
+
+export class Node<T> {
+    data: T;
+
+    constructor(data: T) {
+        this.data = data;
     }
 }
