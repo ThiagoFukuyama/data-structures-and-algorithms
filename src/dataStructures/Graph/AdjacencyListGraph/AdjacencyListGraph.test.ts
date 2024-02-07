@@ -94,6 +94,33 @@ describe("AdjacencyListGraph", () => {
         });
     });
 
+    describe("#depthFirstSearch", () => {
+        it("Should return an array with the order of the traversed nodes data", () => {
+            const newNodeNames = ["C"];
+            const nodeEdges: [number, number][] = [
+                [0, 2],
+                [2, 1],
+                [1, 0],
+            ];
+
+            newNodeNames.forEach((name) => graph.addNode(name));
+            nodeEdges.forEach((edge) => graph.addEdge(...edge));
+
+            const result1 = graph.depthFirstSearch(0);
+            expect(result1).toEqual(["A", "C", "B"]);
+
+            const result2 = graph.depthFirstSearch(1);
+            expect(result2).toEqual(["B", "A", "C"]);
+        });
+
+        it("Should return an empty array", () => {
+            const emptyGraph = new AdjacencyListGraph<string>();
+            const result = emptyGraph.depthFirstSearch(0);
+
+            expect(result).toEqual([]);
+        });
+    });
+
     describe("#get size", () => {
         it("Should return the number of nodes of the Graph", () => {
             expect(graph.size).toBe(2);
