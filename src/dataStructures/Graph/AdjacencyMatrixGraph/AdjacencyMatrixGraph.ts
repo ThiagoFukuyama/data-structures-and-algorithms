@@ -49,6 +49,32 @@ export class AdjacencyMatrixGraph<T> implements Graph<T> {
         return this.matrix[node];
     }
 
+    public depthFirstSearch(src: number): T[] {
+        if (this.nodes.length <= 0) return [];
+
+        const visited: T[] = [];
+        const result = this.dfsHelper(src, visited);
+        return result;
+    }
+
+    private dfsHelper(src: number, visited: T[]): T[] {
+        const currentNodeData = this.nodes[src].data;
+
+        if (visited.find((data) => data === currentNodeData) !== undefined) {
+            return visited;
+        }
+
+        visited[visited.length] = currentNodeData;
+
+        for (let i = 0; i < this.matrix[src].length; i++) {
+            if (this.matrix[src][i] === 1) {
+                this.dfsHelper(i, visited);
+            }
+        }
+
+        return visited;
+    }
+
     public toString(): string {
         if (this.nodes.length <= 0) return "( )";
 

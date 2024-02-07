@@ -118,16 +118,45 @@ describe("AdjacencyMatrixGraph", () => {
         });
     });
 
+    describe("#dephFirstSearch", () => {
+        it("Should return an array with the order of the traversed nodes data", () => {
+            const nodeNames = ["A", "B", "C"];
+            const nodeEdges: [number, number][] = [
+                [0, 2],
+                [2, 1],
+                [1, 0],
+            ];
+
+            nodeNames.forEach((name) => graph.addNode(name));
+            nodeEdges.forEach((edge) => graph.addEdge(...edge));
+
+            const result1 = graph.depthFirstSearch(0);
+            expect(result1).toEqual(["A", "C", "B"]);
+
+            const result2 = graph.depthFirstSearch(1);
+            expect(result2).toEqual(["B", "A", "C"]);
+        });
+
+        it("Should return an empty array", () => {
+            const emptyGraph = new AdjacencyMatrixGraph<string>(5);
+            const result = emptyGraph.depthFirstSearch(0);
+
+            expect(result).toEqual([]);
+        });
+    });
+
     describe("#toString", () => {
         it("Should return a string representation of the adjacency matrix", () => {
             const nodeNames = ["A", "B", "C", "D", "E"];
+            const nodeEdges: [number, number][] = [
+                [1, 0],
+                [2, 4],
+                [3, 2],
+                [4, 2],
+            ];
 
             nodeNames.forEach((name) => graph.addNode(name));
-
-            graph.addEdge(1, 0);
-            graph.addEdge(2, 4);
-            graph.addEdge(3, 2);
-            graph.addEdge(4, 2);
+            nodeEdges.forEach((edge) => graph.addEdge(...edge));
 
             const expectedString =
                 "  A B C D E \nA 0 0 0 0 0 \nB 1 0 0 0 0 \nC 0 0 0 0 1 \nD 0 0 1 0 0 \nE 0 0 1 0 0 ";
