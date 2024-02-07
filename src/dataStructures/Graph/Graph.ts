@@ -4,6 +4,7 @@ export interface Graph<T> {
     addEdge: (src: number, dest: number) => void;
     removeEdge: (src: number, dest: number) => void;
     hasEdge: (src: number, dest: number) => boolean;
+    depthFirstSearch: (src: number) => T[];
     toString: () => string;
 }
 
