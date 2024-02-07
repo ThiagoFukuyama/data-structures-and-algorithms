@@ -77,10 +77,7 @@ export class AdjacencyListGraph<T> implements Graph<T> {
         if (currentNodeData === undefined || currentNodeList === undefined)
             return visited;
 
-        const isAlreadyVisited =
-            visited.find((data) => data === currentNodeData) !== undefined;
-
-        if (isAlreadyVisited) return visited;
+        if (visited.includes(currentNodeData)) return visited;
 
         visited[visited.length] = currentNodeData;
 

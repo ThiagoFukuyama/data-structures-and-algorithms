@@ -60,9 +60,7 @@ export class AdjacencyMatrixGraph<T> implements Graph<T> {
     private dfsHelper(src: number, visited: T[]): T[] {
         const currentNodeData = this.nodes[src].data;
 
-        if (visited.find((data) => data === currentNodeData) !== undefined) {
-            return visited;
-        }
+        if (visited.includes(currentNodeData)) return visited;
 
         visited[visited.length] = currentNodeData;
 
