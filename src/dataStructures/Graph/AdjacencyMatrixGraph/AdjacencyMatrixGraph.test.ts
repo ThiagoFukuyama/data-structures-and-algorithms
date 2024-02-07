@@ -118,7 +118,7 @@ describe("AdjacencyMatrixGraph", () => {
         });
     });
 
-    describe("#dephFirstSearch", () => {
+    describe("#depthFirstSearch", () => {
         it("Should return an array with the order of the traversed nodes data", () => {
             const nodeNames = ["A", "B", "C"];
             const nodeEdges: [number, number][] = [
