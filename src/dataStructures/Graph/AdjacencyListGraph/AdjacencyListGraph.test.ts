@@ -121,6 +121,44 @@ describe("AdjacencyListGraph", () => {
         });
     });
 
+    describe("#breadthFirstSearch", () => {
+        it("Should return an array with the order of the traversed nodes data", () => {
+            const newNodeNames = ["C", "D", "E"];
+            const edges: [number, number][] = [
+                [0, 1],
+                [1, 2],
+                [1, 4],
+                [2, 3],
+                [2, 4],
+                [4, 0],
+                [4, 2],
+            ];
+
+            newNodeNames.forEach((name) => graph.addNode(name));
+            edges.forEach((edge) => graph.addEdge(...edge));
+
+            const result1 = graph.breadthFirstSearch(0);
+            expect(result1).toEqual(["A", "B", "C", "E", "D"]);
+
+            const result2 = graph.breadthFirstSearch(2);
+            expect(result2).toEqual(["C", "D", "E", "A", "B"]);
+        });
+
+        it("Should return an empty array when there are no nodes", () => {
+            const emptyGraph = new AdjacencyListGraph<string>();
+            const result = emptyGraph.breadthFirstSearch(0);
+
+            expect(result).toEqual([]);
+        });
+
+        it("Should return an empty array when the given start point is invalid", () => {
+            graph.addEdge(0, 1);
+            const result = graph.breadthFirstSearch(15);
+
+            expect(result).toEqual([]);
+        });
+    });
+
     describe("#get size", () => {
         it("Should return the number of nodes of the Graph", () => {
             expect(graph.size).toBe(2);

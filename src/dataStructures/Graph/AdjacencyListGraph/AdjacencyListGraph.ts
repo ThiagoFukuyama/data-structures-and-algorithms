@@ -1,4 +1,4 @@
-import { ArrayList, LinkedList } from "../..";
+import { ArrayList, LinkedList, Queue } from "../..";
 import { Graph, GraphNode } from "../Graph";
 
 export class AdjacencyListGraph<T> implements Graph<T> {
@@ -90,6 +90,41 @@ export class AdjacencyListGraph<T> implements Graph<T> {
         }
 
         return visited;
+    }
+
+    public breadthFirstSearch(src: number): T[] {
+        if (this.isEmpty()) return [];
+
+        const queue = new Queue<number>();
+        const visited: boolean[] = [];
+        const data: T[] = [];
+
+        queue.enqueue(src);
+
+        while (!queue.isEmpty()) {
+            const currentIndex = queue.dequeue();
+            const currentList = this.adjacentList.get(currentIndex);
+            const currentNode = currentList?.getFirst();
+
+            if (currentList === undefined || currentNode === undefined)
+                return data;
+
+            visited[currentIndex] = true;
+            data[data.length] = currentNode.data;
+
+            for (let i = 0; i < currentList.size(); i++) {
+                const adjacentNodeIndex = this.adjacentList.search(
+                    (list) => list.getFirst() === currentList.get(i)
+                );
+
+                if (adjacentNodeIndex !== -1 && !visited[adjacentNodeIndex]) {
+                    queue.enqueue(adjacentNodeIndex);
+                    visited[adjacentNodeIndex] = true;
+                }
+            }
+        }
+
+        return data;
     }
 
     public get size(): number {
