@@ -168,9 +168,18 @@ describe("AdjacencyMatrixGraph", () => {
             expect(result2).toEqual(["C", "D", "E", "A", "B"]);
         });
 
-        it("Should return an empty array", () => {
+        it("Should return an empty array when there are no nodes", () => {
             const emptyGraph = new AdjacencyMatrixGraph<string>(5);
             const result = emptyGraph.breadthFirstSearch(0);
+
+            expect(result).toEqual([]);
+        });
+
+        it("Should return an empty array when the given start point is invalid", () => {
+            graph.addNode("A");
+            graph.addNode("B");
+            graph.addEdge(1, 0);
+            const result = graph.breadthFirstSearch(15);
 
             expect(result).toEqual([]);
         });

@@ -53,25 +53,26 @@ export class AdjacencyMatrixGraph<T> implements Graph<T> {
     public depthFirstSearch(src: number): T[] {
         if (this.nodes.length <= 0) return [];
 
-        const visited: T[] = [];
-        const result = this.dfsHelper(src, visited);
-        return result;
+        const visited: boolean[] = [];
+        const data: T[] = [];
+        this.dfsHelper(src, visited, data);
+
+        return data;
     }
 
-    private dfsHelper(src: number, visited: T[]): T[] {
-        const currentNodeData = this.nodes[src].data;
+    private dfsHelper(src: number, visited: boolean[], data: T[]): T[] {
+        if (visited[src]) return data;
 
-        if (visited.includes(currentNodeData)) return visited;
-
-        visited[visited.length] = currentNodeData;
+        visited[src] = true;
+        data[data.length] = this.nodes[src].data;
 
         for (let i = 0; i < this.matrix[src].length; i++) {
             if (this.matrix[src][i] === 1) {
-                this.dfsHelper(i, visited);
+                this.dfsHelper(i, visited, data);
             }
         }
 
-        return visited;
+        return data;
     }
 
     public breadthFirstSearch(src: number): T[] {
@@ -84,12 +85,16 @@ export class AdjacencyMatrixGraph<T> implements Graph<T> {
         queue.enqueue(src);
 
         while (!queue.isEmpty()) {
-            const currentNodeIndex = queue.dequeue();
-            visited[currentNodeIndex] = true;
-            data[data.length] = this.nodes[currentNodeIndex].data;
+            const currentIndex = queue.dequeue();
+            const currentNode = this.nodes[currentIndex];
 
-            for (let i = 0; i < this.matrix[currentNodeIndex].length; i++) {
-                if (this.matrix[currentNodeIndex][i] === 1 && !visited[i]) {
+            if (currentNode === undefined) return data;
+
+            visited[currentIndex] = true;
+            data[data.length] = currentNode.data;
+
+            for (let i = 0; i < this.matrix[currentIndex].length; i++) {
+                if (this.matrix[currentIndex][i] === 1 && !visited[i]) {
                     queue.enqueue(i);
                     visited[i] = true;
                 }

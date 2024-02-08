@@ -64,32 +64,34 @@ export class AdjacencyListGraph<T> implements Graph<T> {
     public depthFirstSearch(src: number): T[] {
         if (this.isEmpty()) return [];
 
-        const visited: T[] = [];
-        const result = this.dfsHelper(src, visited);
+        const visited: boolean[] = [];
+        const data: T[] = [];
+        this.dfsHelper(src, visited, data);
 
-        return result;
+        return data;
     }
 
-    private dfsHelper(src: number, visited: T[]): T[] {
+    private dfsHelper(src: number, visited: boolean[], data: T[]): T[] {
         const currentNodeList = this.adjacentList.get(src);
         const currentNodeData = currentNodeList?.getFirst()?.data;
 
         if (currentNodeData === undefined || currentNodeList === undefined)
-            return visited;
+            return data;
 
-        if (visited.includes(currentNodeData)) return visited;
+        if (visited[src]) return data;
 
-        visited[visited.length] = currentNodeData;
+        visited[src] = true;
+        data[data.length] = currentNodeData;
 
         for (const node of currentNodeList) {
             const neighbourIndex = this.adjacentList.search(
                 (list) => list.getFirst() === node
             );
 
-            this.dfsHelper(neighbourIndex, visited);
+            this.dfsHelper(neighbourIndex, visited, data);
         }
 
-        return visited;
+        return data;
     }
 
     public breadthFirstSearch(src: number): T[] {
