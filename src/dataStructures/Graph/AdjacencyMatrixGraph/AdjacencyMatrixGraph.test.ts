@@ -145,6 +145,37 @@ describe("AdjacencyMatrixGraph", () => {
         });
     });
 
+    describe("#breadthFirstSearch", () => {
+        it("Should return an array with the order of the traversed nodes data", () => {
+            const nodeNames = ["A", "B", "C", "D", "E"];
+            const nodeEdges: [number, number][] = [
+                [0, 1],
+                [1, 2],
+                [1, 4],
+                [2, 3],
+                [2, 4],
+                [4, 0],
+                [4, 2],
+            ];
+
+            nodeNames.forEach((name) => graph.addNode(name));
+            nodeEdges.forEach((edge) => graph.addEdge(...edge));
+
+            const result1 = graph.breadthFirstSearch(0);
+            expect(result1).toEqual(["A", "B", "C", "E", "D"]);
+
+            const result2 = graph.breadthFirstSearch(2);
+            expect(result2).toEqual(["C", "D", "E", "A", "B"]);
+        });
+
+        it("Should return an empty array", () => {
+            const emptyGraph = new AdjacencyMatrixGraph<string>(5);
+            const result = emptyGraph.breadthFirstSearch(0);
+
+            expect(result).toEqual([]);
+        });
+    });
+
     describe("#toString", () => {
         it("Should return a string representation of the adjacency matrix", () => {
             const nodeNames = ["A", "B", "C", "D", "E"];

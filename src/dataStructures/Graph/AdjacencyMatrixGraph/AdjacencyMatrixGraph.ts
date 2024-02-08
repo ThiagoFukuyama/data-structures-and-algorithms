@@ -1,3 +1,4 @@
+import { Queue } from "../..";
 import { Graph, GraphNode } from "../Graph";
 
 /**
@@ -71,6 +72,31 @@ export class AdjacencyMatrixGraph<T> implements Graph<T> {
         }
 
         return visited;
+    }
+
+    public breadthFirstSearch(src: number): T[] {
+        if (this.nodes.length <= 0) return [];
+
+        const queue = new Queue<number>();
+        const visited: boolean[] = [];
+        const data: T[] = [];
+
+        queue.enqueue(src);
+
+        while (!queue.isEmpty()) {
+            const currentNodeIndex = queue.dequeue();
+            visited[currentNodeIndex] = true;
+            data[data.length] = this.nodes[currentNodeIndex].data;
+
+            for (let i = 0; i < this.matrix[currentNodeIndex].length; i++) {
+                if (this.matrix[currentNodeIndex][i] === 1 && !visited[i]) {
+                    queue.enqueue(i);
+                    visited[i] = true;
+                }
+            }
+        }
+
+        return data;
     }
 
     public toString(): string {
