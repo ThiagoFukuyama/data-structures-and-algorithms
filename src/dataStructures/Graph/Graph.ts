@@ -5,6 +5,7 @@ export interface Graph<T> {
     removeEdge: (src: number, dest: number) => void;
     hasEdge: (src: number, dest: number) => boolean;
     depthFirstSearch: (src: number) => T[];
+    breadthFirstSearch: (src: number) => T[];
     toString: () => string;
 }
 
