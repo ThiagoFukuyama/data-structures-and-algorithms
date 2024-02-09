@@ -2,7 +2,7 @@ import { ArrayList, LinkedList, Queue } from "../..";
 import { Graph, GraphNode } from "../Graph";
 
 export class AdjacencyListGraph<T> implements Graph<T> {
-    adjacentList: ArrayList<LinkedList<Node<T>>>;
+    private adjacentList: ArrayList<LinkedList<Node<T>>>;
 
     constructor() {
         this.adjacentList = new ArrayList();
