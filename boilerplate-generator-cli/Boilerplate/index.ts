@@ -1,3 +1,12 @@
-export { Boilerplate } from "./Boilerplate";
-export { AlgorithmBoilerplate } from "./AlgorithmBoilerplate";
-export { DataStructureBoilerplate } from "./DataStructureBoilerplate";
+export {
+    Boilerplate,
+    AlgorithmBoilerplate,
+    DataStructureBoilerplate,
+} from "./boilerplates";
+
+export {
+    type BoilerplateCategory,
+    boilerplateOptions,
+} from "./boilerplateConfig";
+
+export { createBoilerplate } from "./createBoilerplate";
