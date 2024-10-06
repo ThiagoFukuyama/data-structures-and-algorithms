@@ -1,8 +1,8 @@
 import { Boilerplate } from "./Boilerplate";
 
 export class AlgorithmBoilerplate extends Boilerplate {
-    constructor(label: string, parentFolderName: string) {
-        super(label, parentFolderName);
+    constructor(fileName: string) {
+        super(fileName, "algorithms");
     }
 
     public getCode() {

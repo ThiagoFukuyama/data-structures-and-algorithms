@@ -1,10 +1,9 @@
 export abstract class Boilerplate {
-    public label: string;
+    public fileName: string;
     public parentFolderName: string;
-    public fileName: string | null = null;
 
-    constructor(label: string, parentFolderName: string) {
-        this.label = label;
+    constructor(fileName: string, parentFolderName: string) {
+        this.fileName = fileName;
         this.parentFolderName = parentFolderName;
     }
 

@@ -12,11 +12,12 @@ import {
     confirm,
 } from "@clack/prompts";
 
+import { Boilerplate, createBoilerplate } from "./Boilerplate";
+
 import {
-    Boilerplate,
-    AlgorithmBoilerplate,
-    DataStructureBoilerplate,
-} from "./Boilerplate";
+    type BoilerplateCategory,
+    boilerplateCategories,
+} from "./Boilerplate/config";
 
 import { validateFileName } from "./validateFileName";
 
@@ -26,31 +27,24 @@ const srcDir = path.resolve(
     "src"
 );
 
-const boilerplateOptions: Boilerplate[] = [
-    new AlgorithmBoilerplate("Algorithm", "algorithms"),
-    new DataStructureBoilerplate("Data Structure", "dataStructures"),
-];
-
 async function main() {
     intro("<<< Generate boilerplate for new module >>>");
 
-    const selectedType: number | symbol = await select({
+    const selectedCategory: BoilerplateCategory | symbol = await select({
         message: "What do you want to create?",
-        options: boilerplateOptions.map((opt, i) => ({
-            value: i,
-            label: opt.label,
+        options: boilerplateCategories.map((opt) => ({
+            value: opt,
+            label: opt,
         })),
     });
 
-    if (isCancel(selectedType)) {
+    if (isCancel(selectedCategory)) {
         cancel("Operation cancelled.");
         process.exit(0);
     }
 
-    const boilerplate = boilerplateOptions[selectedType];
-
     const name = await text({
-        message: `What's the file name of the new ${boilerplate.label}?`,
+        message: `What's the file name of the new ${selectedCategory}?`,
         validate: (value) => {
             if (!validateFileName(value))
                 return "Please, insert a valid module name.";
@@ -71,28 +65,38 @@ async function main() {
         process.exit(0);
     }
 
-    boilerplate.fileName = name.trim().replace(/\s/g, "");
-    const { fileName, parentFolderName, label } = boilerplate;
+    const fileName = name.trim().replace(/\s/g, "");
+    const boilerplate = createBoilerplate(selectedCategory, fileName);
+
+    try {
+        const folderPath = await generateFiles(boilerplate);
+        outro(
+            `<<< Generated ${boilerplate.fileName} successfully! >>> \n   In "${folderPath}"`
+        );
+    } catch (error) {
+        cancel(`Sorry! It looks like ${boilerplate.fileName} already exists.`);
+    }
+}
+
+async function generateFiles(boilerplate: Boilerplate) {
+    const { fileName, parentFolderName } = boilerplate;
 
     const parentIndexPath = path.resolve(srcDir, parentFolderName, "index.ts");
+
     const folder = path.resolve(srcDir, parentFolderName, fileName);
+
+    await fs.mkdir(folder);
 
     const filePath = path.resolve(folder, `${fileName}.ts`);
     const testFilePath = path.resolve(folder, `${fileName}.test.ts`);
 
-    try {
-        await fs.mkdir(folder);
-        await fs.writeFile(filePath, boilerplate.getCode());
-        await fs.writeFile(testFilePath, boilerplate.getTest());
-        await fs.appendFile(parentIndexPath, boilerplate.getExport());
-    } catch (e) {
-        cancel(`Sorry! It looks like ${fileName} already exists.`);
-        process.exit(1);
-    }
+    await Promise.all([
+        fs.writeFile(filePath, boilerplate.getCode()),
+        fs.writeFile(testFilePath, boilerplate.getTest()),
+        fs.appendFile(parentIndexPath, boilerplate.getExport()),
+    ]);
 
-    outro(
-        `<<< Generated ${fileName} ${label} successfully! >>> \n   In "${folder}"`
-    );
+    return folder;
 }
 
 main();
