@@ -9,5 +9,5 @@ export function createBoilerplate(
 
     if (BoilerplateClass != null) return new BoilerplateClass(fileName);
 
-    throw new Error(`Invalid argument for type: ${category}`);
+    throw new Error(`Invalid argument for category: ${category}`);
 }
