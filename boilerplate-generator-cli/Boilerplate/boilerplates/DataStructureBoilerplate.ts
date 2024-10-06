@@ -1,8 +1,8 @@
 import { Boilerplate } from "./Boilerplate";
 
 export class DataStructureBoilerplate extends Boilerplate {
-    constructor(label: string, parentFolderName: string) {
-        super(label, parentFolderName);
+    constructor(fileName: string) {
+        super(fileName, "dataStructures");
     }
 
     public getCode(): string {
