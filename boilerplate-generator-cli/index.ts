@@ -12,12 +12,13 @@ import {
     confirm,
 } from "@clack/prompts";
 
+import { Boilerplate, createBoilerplate } from "./Boilerplate";
+
 import {
     type BoilerplateCategory,
-    Boilerplate,
-    createBoilerplate,
-    boilerplateOptions,
-} from "./Boilerplate";
+    boilerplateCategories,
+} from "./Boilerplate/config";
+
 import { validateFileName } from "./validateFileName";
 
 const srcDir = path.resolve(
@@ -31,7 +32,7 @@ async function main() {
 
     const selectedCategory: BoilerplateCategory | symbol = await select({
         message: "What do you want to create?",
-        options: boilerplateOptions.map((opt) => ({
+        options: boilerplateCategories.map((opt) => ({
             value: opt,
             label: opt,
         })),

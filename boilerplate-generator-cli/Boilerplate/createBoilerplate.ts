@@ -1,8 +1,5 @@
 import { Boilerplate } from "./boilerplates";
-import {
-    type BoilerplateCategory,
-    boilerplateClasses,
-} from "./boilerplateConfig";
+import { type BoilerplateCategory, boilerplateClasses } from "./config";
 
 export function createBoilerplate(
     category: BoilerplateCategory,
