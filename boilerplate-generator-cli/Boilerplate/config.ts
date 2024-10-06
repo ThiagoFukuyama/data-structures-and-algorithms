@@ -7,6 +7,6 @@ export const boilerplateClasses = {
 
 export type BoilerplateCategory = keyof typeof boilerplateClasses;
 
-export const boilerplateOptions = Object.keys(
+export const boilerplateCategories = Object.keys(
     boilerplateClasses
 ) as BoilerplateCategory[];
